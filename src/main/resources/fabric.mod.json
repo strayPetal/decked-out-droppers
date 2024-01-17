@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "id": "${id}",
+  "version": "${version}",
+
+  "name": "${name}",
+  "description": "${description}",
+  "authors": [
+    "${author}"
+  ],
+  "contact": {
+    "homepage": "https://github.com/strayPetal/decked-out-droppers",
+    "sources": "https://github.com/strayPetal/decked-out-droppers",
+    "issues": "https://github.com/strayPetal/decked-out-droppers/issues"
+  },
+
+  "license": "LGPL-3.0-only",
+  "icon": "assets/deckedoutdroppers/icon.png",
+
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "deckedoutdroppers.DeckedOutDroppersMod::init"
+    ]
+  },
+  "mixins": [
+    "deckedoutdroppers.mixins.json"
+  ],
+
+  "depends": {
+    "fabricloader": ">=0.15.5",
+    "minecraft": ">=1.20",
+    "java": ">=17"
+  }
+}
