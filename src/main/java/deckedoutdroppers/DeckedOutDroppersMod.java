@@ -67,6 +67,8 @@ public class DeckedOutDroppersMod {
                                                    "#b02e26",   // 3 Deadly
                                                    "dark_red",  // 4 Deadly
                                                    "#3ab3da"    // 4 Deepfrost
+            )),
+            entry(Items.FILLED_MAP, mapIdIs(976     // In-Game UI Map
             ))
     ));
     
@@ -80,15 +82,15 @@ public class DeckedOutDroppersMod {
         return false;
     }
     
-    private static String getCustomNameColor(NbtCompound nbt) {
-        return nbt.getCompound("NameFormat").getString("color");
-    }
-    
     private static Function<NbtCompound, Boolean> customModelValueIs(Integer... customModelValues) {
         return nbt -> isOneOf(nbt.getInt("CustomModelData"), customModelValues);
     }
     
     private static Function<NbtCompound, Boolean> customNameColorIs(String... color) {
-        return nbt -> isOneOf(getCustomNameColor(nbt), color);
+        return nbt -> isOneOf(nbt.getCompound("NameFormat").getString("color"), color);
+    }
+    
+    private static Function<NbtCompound, Boolean> mapIdIs(Integer... mapIds) {
+        return nbt -> isOneOf(nbt.getInt("map"), mapIds);
     }
 }
