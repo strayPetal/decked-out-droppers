@@ -8,14 +8,17 @@ I don't really have any plans to put this up on Modrinth cause lazy.
 
 You can grab the Hermitcraft S9 world download from https://hermitcraft.com/ and play Decked Out 2 for yourself too!
 
-Tango has a very nice explainer video for those who aren't familiar with the game here: [How to Play Decked Out 2! by Tango Tek on YouTube](https://youtu.be/aoVVCwx6k1w)
+Tango has a very nice explainer video for those who aren't familiar with the game here: [How to Play Decked Out 2!](https://youtu.be/aoVVCwx6k1w)
 
 ## The specifics
 **What this mod covers:**
 - **floor loot** - coins, crowns, embers, all 3 types of keys, repair kits, pumpkins, and the bomb.
 - **artifact compasses**
+- **Decked Out maps**
 - **all 28 artifacts and their corresponding artifakes**
 - **victory tomes**
 
 **What isn't covered:**
-- **cards** - cards aren't covered because this will mess up with the card handling system. Besides, cards are only newly dropped from one place, that place being the ember shop, so if you are planning to play the game for a long time or with friends, just periodically refill the card droppers in the ember shop.
+- **cards** - cards aren't covered because this will mess up with the card handling system. Refill at ember shop periodically.
+  - **porkchops** (Pork Chop Power or Halloween area) - impossible to differentiate from other porkchops dispensed from dispensers. Refill above the starting area for Pork Chop Power, and at the Halloween area.
+- **armor for Suit Up** - same as above. Refill above starting area.
