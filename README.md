@@ -20,5 +20,5 @@ Tango has a very nice explainer video for those who aren't familiar with the gam
 
 **What isn't covered:**
 - **cards** - cards aren't covered because this will mess up with the card handling system. Refill at ember shop periodically.
-  - **porkchops** (Pork Chop Power or Halloween area) - impossible to differentiate from other porkchops dispensed from dispensers. Refill above the starting area for Pork Chop Power, and at the Halloween area.
+- **porkchops** (Pork Chop Power or Halloween area) - impossible to differentiate from other porkchops dispensed from dispensers. Refill above the starting area for Pork Chop Power, and at the Halloween area.
 - **armor for Suit Up** - same as above. Refill above starting area.
