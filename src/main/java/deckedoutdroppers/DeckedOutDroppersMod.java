@@ -1,10 +1,9 @@
 package deckedoutdroppers;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
-import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.math.BlockPos;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,9 +17,13 @@ public class DeckedOutDroppersMod {
     public static void init() {
     }
     
+    public static final Block ALWAYS_ALLOW_MARKER = Blocks.REINFORCED_DEEPSLATE;
+    public static final Block NEVER_ALLOW_MARKER = Blocks.PETRIFIED_OAK_SLAB;
+    
     public static final DispenseActionConditionalChecker DECKED_OUT_ITEM_CHECKER = new DispenseActionConditionalChecker(List.of(
             List.of(itemIs(Items.IRON_NUGGET),
                     customModelValueIs(1,    // Coin
+                                       2,    // Crown
                                        3,    // Frost Ember
                                        201,  // Level 2 Key
                                        203,  // Level 3 Key
@@ -55,9 +58,6 @@ public class DeckedOutDroppersMod {
                                        38,   // The Skadoodler
                                        36,   // Mug of the Dungeon Master
                                        37)), // The Master's Key
-            List.of(itemIs(Items.IRON_NUGGET),
-                    customModelValueIs(2),      // Crown
-                    noCancelMarkerPresent()),   // don't do on crown dropper at bottom
             List.of(itemIs(Items.IRON_INGOT),
                     customModelValueIs(2        // Rusty Repair Kit
                     )),
@@ -78,7 +78,13 @@ public class DeckedOutDroppersMod {
                     ))
     ));
     
-    public static boolean isItemForDeckedOut(DispenseAction dispenseAction) {
+    public static boolean shouldCostNothing(DispenseAction dispenseAction) {
+        Block marker = dispenseAction.getMarkerBlock();
+        if (marker == ALWAYS_ALLOW_MARKER)
+            return true;
+        else if (marker == NEVER_ALLOW_MARKER)
+            return false;
+        
         return DECKED_OUT_ITEM_CHECKER.evaluate(dispenseAction);
     }
     
@@ -102,13 +108,5 @@ public class DeckedOutDroppersMod {
     
     private static Function<DispenseAction, Boolean> mapIdIs(Integer... mapIds) {
         return da -> isOneOf(da.getItemNbt().getInt("map"), mapIds);
-    }
-    
-    private static Function<DispenseAction, Boolean> noCancelMarkerPresent() {
-        return da -> {
-            ServerWorld world = da.getWorld();
-            BlockPos dispenserPos = da.getDispenserPosition();
-            return world.getBlockState(dispenserPos.down()).getBlock() != Blocks.PETRIFIED_OAK_SLAB;
-        };
     }
 }

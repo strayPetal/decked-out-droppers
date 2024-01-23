@@ -1,5 +1,6 @@
 package deckedoutdroppers;
 
+import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
@@ -22,5 +23,9 @@ public record DispenseAction(BlockPointer blockPointer, ItemStack itemStack) {
     
     public ServerWorld getWorld() {
         return blockPointer.level();
+    }
+    
+    public Block getMarkerBlock() {
+        return getWorld().getBlockState(getDispenserPosition().down()).getBlock();
     }
 }

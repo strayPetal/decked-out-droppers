@@ -9,15 +9,15 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-import static deckedoutdroppers.DeckedOutDroppersMod.isItemForDeckedOut;
+import static deckedoutdroppers.DeckedOutDroppersMod.shouldCostNothing;
 
 @Mixin(ItemDispenserBehavior.class)
 public abstract class ItemDispenserBehaviorMixin {
     @Inject(method = "dispenseSilently",
             at = @At(value = "HEAD"))
-    private void noDeckedOutItemCost(BlockPointer pointer, ItemStack stack, CallbackInfoReturnable<ItemStack> cir) {
+    private void conditionalNoItemCost(BlockPointer pointer, ItemStack stack, CallbackInfoReturnable<ItemStack> cir) {
         DispenseAction dispenseAction = new DispenseAction(pointer, stack);
-        if (isItemForDeckedOut(dispenseAction))
+        if (shouldCostNothing(dispenseAction))
             stack.increment(1);
     }
 }
