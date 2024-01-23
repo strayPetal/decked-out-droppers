@@ -1,5 +1,6 @@
 package deckedoutdroppers.mixin;
 
+import deckedoutdroppers.DispenseAction;
 import net.minecraft.block.dispenser.ItemDispenserBehavior;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPointer;
@@ -15,7 +16,8 @@ public abstract class ItemDispenserBehaviorMixin {
     @Inject(method = "dispenseSilently",
             at = @At(value = "HEAD"))
     private void noDeckedOutItemCost(BlockPointer pointer, ItemStack stack, CallbackInfoReturnable<ItemStack> cir) {
-        if (isItemForDeckedOut(stack))
+        DispenseAction dispenseAction = new DispenseAction(pointer, stack);
+        if (isItemForDeckedOut(dispenseAction))
             stack.increment(1);
     }
 }
