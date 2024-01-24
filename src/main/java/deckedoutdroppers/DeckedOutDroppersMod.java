@@ -17,10 +17,10 @@ public class DeckedOutDroppersMod {
     public static void init() {
     }
     
-    public static final Block ALWAYS_ALLOW_MARKER = Blocks.REINFORCED_DEEPSLATE;
-    public static final Block NEVER_ALLOW_MARKER = Blocks.PETRIFIED_OAK_SLAB;
+    public static final Block ALWAYS_REPLENISH_MARKER = Blocks.REINFORCED_DEEPSLATE;
+    public static final Block NEVER_REPLENISH_MARKER = Blocks.PETRIFIED_OAK_SLAB;
     
-    public static final DispenseActionConditionalChecker DECKED_OUT_ITEM_CHECKER = new DispenseActionConditionalChecker(List.of(
+    public static final DispenseActionConditions REPLENISH_CONDITIONS = new DispenseActionConditions(List.of(
             List.of(itemIs(Items.IRON_NUGGET),
                     customModelValueIs(1,    // Coin
                                        2,    // Crown
@@ -80,12 +80,12 @@ public class DeckedOutDroppersMod {
     
     public static boolean shouldCostNothing(DispenseAction dispenseAction) {
         Block marker = dispenseAction.getMarkerBlock();
-        if (marker == ALWAYS_ALLOW_MARKER)
+        if (marker == ALWAYS_REPLENISH_MARKER)
             return true;
-        else if (marker == NEVER_ALLOW_MARKER)
+        else if (marker == NEVER_REPLENISH_MARKER)
             return false;
         
-        return DECKED_OUT_ITEM_CHECKER.evaluate(dispenseAction);
+        return REPLENISH_CONDITIONS.evaluate(dispenseAction);
     }
     
     private static <T> boolean isOneOf(T value, T[] list) {

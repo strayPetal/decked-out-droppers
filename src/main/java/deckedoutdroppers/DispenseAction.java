@@ -14,7 +14,10 @@ public record DispenseAction(BlockPointer blockPointer, ItemStack itemStack) {
     }
     
     public NbtCompound getItemNbt() {
-        return itemStack.getNbt();
+        NbtCompound nbt = itemStack.getNbt();
+        if (nbt == null)
+            nbt = new NbtCompound();
+        return nbt;
     }
     
     public BlockPos getDispenserPosition() {
